@@ -8,6 +8,7 @@ body {
   font-family: "Open Sans", sans-serif;
   background-image: url("img/london.jpg");
   /* Photo by Benjamin Davies on Unsplash */
+  background-size: cover;
   font-size: 120%;
 }
 
@@ -35,6 +36,7 @@ button {
   color: #fff;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  border-radius: 25px;
 }
 
 button:hover {
