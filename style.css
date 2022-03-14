@@ -6,8 +6,6 @@ body {
   margin: 0;
   background: #000;
   font-family: "Open Sans", sans-serif;
-  background-image: url("img/london.jpg");
-  /* Photo by Benjamin Davies on Unsplash */
   background-size: cover;
   font-size: 120%;
 }
