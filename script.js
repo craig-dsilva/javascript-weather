@@ -20,7 +20,6 @@ const weather = () => {
 
   // Users can manually search for locations
   searchButtonEl.addEventListener("click", () => {
-    document.body.style.backgroundImage = `url("https://source.unsplash.com/1600x900/?${searchBarEl.value}")`;
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${searchBarEl.value}&units=metric&appid=${apiKey}`
     )
