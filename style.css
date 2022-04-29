@@ -57,6 +57,11 @@ h1.temperature {
   margin: 0;
   margin-bottom: 0.5em;
 }
+
+.error {
+  color: #f00;
+}
+
 .description-container {
   display: flex;
   align-items: center;

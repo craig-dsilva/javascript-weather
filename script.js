@@ -1,3 +1,5 @@
+const errorEl = document.querySelector(".error");
+
 const weather = () => {
   let apiKey = "a8f6179630de50582203e8324ec4a157";
 
@@ -20,6 +22,9 @@ const weather = () => {
 
   // Users can manually search for locations
   searchButtonEl.addEventListener("click", () => {
+    if (!searchBarEl.value) {
+      errorEl.innerText = "Please enter a location";
+    }
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${searchBarEl.value}&units=metric&appid=${apiKey}`
     )
@@ -31,12 +36,6 @@ const weather = () => {
 };
 
 const displayWeather = (data) => {
-  // Destructures the data/object
-  const { name } = data;
-  const { icon, description } = data.weather[0];
-  const { temp, feels_like, humidity } = data.main;
-  const { speed } = data.wind;
-
   const cityEl = document.querySelector(".city");
   const iconEl = document.querySelector(".icon");
   const descriptionEl = document.querySelector(".description");
@@ -45,13 +44,24 @@ const displayWeather = (data) => {
   const humidityEl = document.querySelector(".humidity");
   const windEl = document.querySelector(".wind");
 
-  cityEl.innerText = name;
-  iconEl.src = `https://openweathermap.org/img/wn/${icon}.png`; // Renders an icon according to the weather condition provided by the api
-  temperatureEl.innerHTML = `${Math.round(temp)}&deg;C`;
-  feelsLikeEl.innerHTML = `Feels like ${Math.round(feels_like)}&deg;C`;
-  descriptionEl.innerText = description;
-  humidityEl.innerText = `Humidity: ${humidity}%`;
-  windEl.innerText = `Wind speed: ${Math.round(speed * 3.6)} km/h`;
+  if (data.cod === "404") {
+    errorEl.innerText = "Location not found";
+  } else {
+    // Destructures the data/object
+    const { name } = data;
+    const { icon, description } = data.weather[0];
+    const { temp, feels_like, humidity } = data.main;
+    const { speed } = data.wind;
+
+    errorEl.innerHTML = "";
+    cityEl.innerText = name;
+    iconEl.src = `https://openweathermap.org/img/wn/${icon}.png`; // Renders an icon according to the weather condition provided by the api
+    temperatureEl.innerHTML = `${Math.round(temp)}&deg;C`;
+    feelsLikeEl.innerHTML = `Feels like ${Math.round(feels_like)}&deg;C`;
+    descriptionEl.innerText = description;
+    humidityEl.innerText = `Humidity: ${humidity}%`;
+    windEl.innerText = `Wind speed: ${Math.round(speed * 3.6)} km/h`;
+  }
 };
 
 window.onload = weather;
