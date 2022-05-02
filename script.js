@@ -17,19 +17,22 @@ const weather = () => {
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
     )
       .then((response) => response.json())
-      .then((data) => displayWeather(data));
+      .then((data) => displayWeather(data))
+      .catch((error) => (errorEl.innerText = error));
   });
 
   // Users can manually search for locations
   searchButtonEl.addEventListener("click", () => {
     if (!searchBarEl.value) {
-      errorEl.innerText = "Please enter a location";
+      errorEl.innerText = "Please enter a location"; // If the user does not enter a location an error will be displayed
+      setTimeout(() => (errorEl.innerText = ""), 2000); // Clears the error after 2 seconds
     }
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${searchBarEl.value}&units=metric&appid=${apiKey}`
     )
       .then((response) => response.json())
-      .then((data) => displayWeather(data));
+      .then((data) => displayWeather(data))
+      .catch((error) => (errorEl.innerText = error));
 
     searchBarEl.value = ""; // Clears the search input when the search button is clicked
   });
@@ -44,8 +47,10 @@ const displayWeather = (data) => {
   const humidityEl = document.querySelector(".humidity");
   const windEl = document.querySelector(".wind");
 
+  // Checks if the location exists in the api
   if (data.cod === "404") {
     errorEl.innerText = "Location not found";
+    setTimeout(() => (errorEl.innerText = ""), 2000);
   } else {
     // Destructures the data/object
     const { name } = data;
