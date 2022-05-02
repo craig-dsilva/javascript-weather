@@ -26,14 +26,14 @@ const weather = () => {
     if (!searchBarEl.value) {
       errorEl.innerText = "Please enter a location"; // If the user does not enter a location an error will be displayed
       setTimeout(() => (errorEl.innerText = ""), 2000); // Clears the error after 2 seconds
+    } else {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${searchBarEl.value}&units=metric&appid=${apiKey}`
+      )
+        .then((response) => response.json())
+        .then((data) => displayWeather(data))
+        .catch((error) => (errorEl.innerText = error));
     }
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${searchBarEl.value}&units=metric&appid=${apiKey}`
-    )
-      .then((response) => response.json())
-      .then((data) => displayWeather(data))
-      .catch((error) => (errorEl.innerText = error));
-
     searchBarEl.value = ""; // Clears the search input when the search button is clicked
   });
 };
