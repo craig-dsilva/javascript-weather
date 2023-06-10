@@ -1,7 +1,7 @@
 const errorEl = document.querySelector(".error");
 
 const weather = () => {
-  let apiKey = "a8f6179630de50582203e8324ec4a157";
+  let apiKey = "";
 
   const searchButtonEl = document.querySelector(".search button");
   const searchBarEl = document.querySelector(".search-bar");
