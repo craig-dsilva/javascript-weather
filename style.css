@@ -4,13 +4,18 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: #000;
   font-family: "Open Sans", sans-serif;
   background-size: cover;
   font-size: 120%;
 }
 
+.maintenance {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
 .card {
+  display: none;
   background: #000000d0;
   color: #fff;
   padding: 2em;

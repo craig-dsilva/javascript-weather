@@ -6,9 +6,6 @@ const weather = () => {
   const searchButtonEl = document.querySelector(".search button");
   const searchBarEl = document.querySelector(".search-bar");
 
-  document.body.style.backgroundImage = 'url("img/london.jpg")';
-  // Photo by Benjamin Davies on Unsplash
-
   // If the user's location is available this will render the data for that location
   navigator.geolocation.getCurrentPosition((position) => {
     let lat = position.coords.latitude;
